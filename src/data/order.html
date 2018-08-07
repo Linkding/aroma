@@ -1,0 +1,38 @@
+<script src="../../node_modules/axios/dist/axios.js"></script>
+<script src="./api.js"></script>
+<script>
+    let model = {
+        name:'order',
+        structure:{
+            sum:{               //总价
+                type:'float',
+                nullable:true,
+            },
+            oid:{
+                type:'string', //订单号
+                nullable:true,
+            },
+            product_info:{      //订单信息
+                type:'json',
+                nullable:true,
+            },
+            pay_by:{      //支付方式
+                type:'string',
+                nullable:true,
+            },
+            memo:{      //备注
+                type:'string',
+                nullable:true,
+            },
+            user_id:{      //用户id
+                type:'integer',
+                nullable:true,
+            },
+        }
+    }
+    // api('MODEL/ATTACH_FEATURE',{
+    //     key:'order',
+    //     feature:'payment'
+    // })
+    api('MODEL/READ',{key:'order'})
+</script>

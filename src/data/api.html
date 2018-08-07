@@ -1,0 +1,40 @@
+<script src="../../node_modules/axios/dist/axios.js"></script>
+<script src="./api.js"></script>
+<script>
+    // api('MODEL/READ')
+    // api('MODEL/DELETE',{key:'cart'})
+    // api('product/delete',{id:4})
+    // api('PROPERTY/CREATE',{
+    //     model:'product',
+    //     key:'start_hot',
+    //     structure:{
+    //         type:'boolean',
+    //         nullable:true,
+    //     },
+    // });
+    // api('PROPERTY/CREATE',{
+    //     model:'product',
+    //     key:'single_hot',
+    //     structure:{
+    //         type:'boolean',
+    //         nullable:true,
+    //     },
+    // });
+    // api('PROPERTY/CREATE',{
+    //     model:'product',
+    //     key:'wineset_hot',
+    //     structure:{
+    //         type:'boolean',
+    //         nullable:true,
+    //     },
+    // });
+    api('PROPERTY/CREATE',{
+        model:'product',
+        key:'occasion_hot',
+        structure:{
+            type:'boolean',
+            nullable:true,
+        },
+    });
+
+    </script>
