@@ -31,7 +31,9 @@
                     <div class="cat-title">法国推荐餐酒</div>
                     <div class="row card-group">
                         <div class="card" v-for="(card,index) in occasion_hot" :key="index">
-                            <img :src="card.preview && card.preview[0] &&card.preview[0].url" alt="">
+                             <router-link :to="'/detail/' + card.id">
+                                <img :src="card.preview && card.preview[0] &&card.preview[0].url" alt="">
+                            </router-link>
                             <span class="tap">家庭餐</span>
                         </div>
                     </div>
@@ -40,7 +42,9 @@
                     <div class="cat-title">热卖系列</div>
                     <div class="row card-group">
                         <div class="card single-hot" v-for="(card,index) in single_hot" :key="index">
-                            <img :src="card.preview && card.preview[0] &&card.preview[0].url" alt="">
+                            <router-link :to="'/detail/' + card.id">
+                                <img :src="card.preview && card.preview[0] &&card.preview[0].url" alt="">
+                            </router-link>
                             <span class="tap">{{single_hot_tap[index]}}</span>
                         </div>
                     </div>
