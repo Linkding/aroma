@@ -11,7 +11,7 @@
                         <h2>产品管理</h2>
                         <!-- <SearchBar :model="model" :isSearch="false" :onSubmit="search" :searchable="searchable"/> -->
                         <div class="tool-bar">
-                            <button @click="show_form= !show_form"><span v-if="show_form">收起</span><span v-else>创建产品</span></button>
+                            <button @click="show_form= !show_form"><span v-if="show_form" @click="cancel()">收起</span><span v-else>创建产品</span></button>
                         </div>
                         <form v-if="show_form" @submit="cou($event)">
                             <div class="input-control">
@@ -77,16 +77,20 @@
                                 <input type="checkbox" v-model="current.new">
                             </div>
                              <div class="input-control">
-                                <label>是否明星推荐</label>{{current.start_hot}}
+                                <label>是否明星推荐start_hot</label>{{current.start_hot}}
                                 <input type="checkbox" v-model="current.start_hot">
                             </div>
                             <div class="input-control">
-                                <label>是否人气单品</label>{{current.single_hot}}
+                                <label>是否人气单品single_hot</label>{{current.single_hot}}
                                 <input type="checkbox" v-model="current.single_hot">
                             </div>
                             <div class="input-control">
-                                <label>是否品酒酒具</label>{{current.wineset_hot}}
+                                <label>是否热卖酒具wineset_hot</label>{{current.wineset_hot}}
                                 <input type="checkbox" v-model="current.wineset_hot">
+                            </div>
+                            <div class="input-control">
+                                <label>是否场合用酒occasion_hot</label>{{current.occasion_hot}}
+                                <input type="checkbox" v-model="current.occasion_hot">
                             </div>
                             <div class="input-control">
                                 <label>图片地址</label>
@@ -118,10 +122,10 @@
                                     <th>库存</th>
                                     <th>场合</th>
                                     <th>是否新酒</th>
-                                    <th>是否明星推荐start_hot</th>
-                                    <th>是否人气单品single_hot</th>
-                                    <th>是否热卖酒具wineset_host</th>
-                                    <th>是否热卖场合occasion_host</th>
+                                    <th>是否明星推荐</th>
+                                    <th>是否人气单品</th>
+                                    <th>是否热卖酒具</th>
+                                    <th>是否场合用酒</th>
                                     <th>图片数量</th>
                                     <th>操作</th>
                                 </thead>

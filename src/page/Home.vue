@@ -25,48 +25,19 @@
                              </router-link>
                             <span class="tap">{{start_hot_tap[index]}}</span>
                         </div>
-                        <!-- <div class="col-lg-3 card">
-                            <img src="../assets/img/glass01-pre.jpeg" alt="">
-                            <span class="tap">红酒杯</span>
-                        </div>
-                        <div class="col-lg-3 card">
-                            <img src="../assets/img/wine01-pre.jpeg" alt="">
-                            <span class="tap">博若莱新酒</span>
-                        </div>
-                        <div class="col-lg-3 card">
-                            <img src="../assets/img/xiangbin-pre.jpeg" alt="">
-                            <span class="tap">香 槟</span>
-                        </div>
-                        <div class="col-lg-3 card">
-                            <img src="../assets/img/glass01-pre.jpeg" alt="">
-                            <span class="tap">红酒杯</span>
-                        </div> -->
                     </div>
                 </div>
                 <div class="cat-list">
-                    <div class="cat-title">品酒场合</div>
+                    <div class="cat-title">法国推荐餐酒</div>
                     <div class="row card-group">
-                        <div class="card">
-                            <img src="../assets/img/glass01-pre.jpeg" alt="">
+                        <div class="card" v-for="(card,index) in occasion_hot" :key="index">
+                            <img :src="card.preview && card.preview[0] &&card.preview[0].url" alt="">
                             <span class="tap">家庭餐</span>
                         </div>
-                        <div class="card">
-                            <img src="../assets/img/wine01-pre.jpeg" alt="">
-                            <span class="tap">宴 席</span>
-                        </div>
-                        <div class="card">
-                            <img src="../assets/img/xiangbin-pre.jpeg" alt="">
-                            <span class="tap">朋 友</span>
-                        </div>
-                        <div class="card">
-                            <img src="../assets/img/glass01-pre.jpeg" alt="">
-                            <span class="tap">商 务</span>
-                        </div>
-                    
                     </div>
                 </div>
                 <div class="cat-list">
-                    <div class="cat-title">热卖酒品</div>
+                    <div class="cat-title">热卖系列</div>
                     <div class="row card-group">
                         <div class="card single-hot" v-for="(card,index) in single_hot" :key="index">
                             <img :src="card.preview && card.preview[0] &&card.preview[0].url" alt="">
@@ -91,6 +62,8 @@
                 start_hot_tap:['酒具','博若莱','香 槟','桃红酒'],
                 single_hot:{},
                 single_hot_tap:['@瑞 士','@新西兰','@智 利','@澳大利亚'],
+                occasion_hot:{},
+                occasion_hot_tap:[],
                 swiperOption : {
                     keyboard   : true,
                     clickable  : true,
@@ -109,6 +82,7 @@
             this.read();
             this.read_by_segment('start_hot');
             this.read_by_segment('single_hot');
+            this.read_by_segment('occasion_hot');
         },
         methods:{
             read(){
