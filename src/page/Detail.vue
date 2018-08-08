@@ -78,6 +78,9 @@
                     })
             },
             addCart(){
+                if(!session.is_login())
+                    this.$router.push('/login');
+
                 this.is_exist_product.count = '';
                 this.is_exist()
                     .then(r=>{
@@ -102,6 +105,8 @@
                     
             },
             to(){
+                if(!session.is_login())
+                    this.$router.push('/login');
                 return {path:'/order/confirm', query:{id:this.detail.id,count:this.count,_referer:'item_buy'}}
             },
             reduce(){

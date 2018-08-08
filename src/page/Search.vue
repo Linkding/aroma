@@ -128,17 +128,21 @@
             <div
                 v-for="(pre,index) in list"
                 :key="index"
-                class="box">
+                class="box"
+            >
                 <div class="pic">
                     <img :src='pre.preview[0].url' alt="">
-                </div>
-                <div>
                     <div class="info heart">
-                        <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                        <span>
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        </span>
                     </div>
                     <div class="info plus">
                         <!-- <span><i class="fa fa-plus" aria-hidden="true"></i></span> -->
-                        <router-link :to="'/detail/' + pre.id"><span>view</span></router-link>
+                        <router-link :to="'/detail/' + pre.id">
+                            <!-- <span>view</span> -->
+                            <i class="fa fa-asterisk" aria-hidden="true"></i>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -291,6 +295,9 @@ export default {
 };
 </script>
 <style scoped>
+.fa-asterisk{
+    color: #77D1E2;
+}
 .search-area {
     position: relative;
 }
@@ -352,37 +359,41 @@ export default {
     border-radius: 4px;
     margin-bottom: 30px;
     cursor: pointer;
+}
+.pic {
     position: relative;
 }
 .pic img{
     width: 100%;
     opacity: .8;
 }
-
-.box:hover .info {
-    opacity: .9;
-    /* visibility: visible; */
-    display: inline-block;
-}
-.box img:hover {
-    opacity: 1;
-}
 .box .info {
     /* visibility: hidden; */
-    display: none;
+    /* display: none; */
+    opacity: 0;
     font-size: 1rem;
     position: absolute;
     color: #F9726C;
     padding: 8px;
     border-radius: 5px;
     background: #fff;
+    right: 10%;
 }
 .box .heart{
-    top:10%;
-    right: 10%;
+    bottom:18%;
+    
 }
 .box .plus{
-    bottom:12%;
-    right: 10%;
+    bottom:5%;
+}
+
+.box:hover .info {
+    opacity: .8;
+    /* visibility: visible; */
+    /* display: inline-block; */
+    opacity: 1;
+}
+.box .pic:hover img{
+    opacity: 1;
 }
 </style>

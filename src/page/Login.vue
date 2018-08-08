@@ -42,7 +42,10 @@ export default {
   components: { Nav },
   data() {
     return {
-      current: {},
+      current: {
+        $unique:'linkding',
+        password:'123123',
+      },
       login_failed: false //是否登录失败
     };
   },

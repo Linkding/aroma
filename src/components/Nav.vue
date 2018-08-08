@@ -10,8 +10,8 @@
         </div>
         <div class="col-lg-2 right">
             <div v-if="uinfo">
-                <div class="user-panel" @mouseleave="show_user_drop = false">
-                    <div @mouseover="show_user_drop =!show_user_drop" >
+                <div class="user-panel" @mouseover="show_user_drop =true"  @mouseleave="show_user_drop = false">
+                    <div>
                         <div class="nav-item username" >{{uinfo.username}}</div>
                     </div>
                     <transition name="tr-user">
@@ -37,14 +37,15 @@
                         </div>
                     </transition>
                 </div>
-                <div class="cart-panel" @mouseleave="show_cart_drop=false">
-                    <div @mouseover="onShowCart">
-                        <div class="nav-item cart" >
+                <div class="cart-panel" @mouseover="onShowCart" @mouseleave="show_cart_drop=false">
+                    <!-- <div > -->
+                        <div class="nav-item cart">
+                            <!-- 购物车 -->
                             <i class="fas fa-cart-arrow-down"></i>    
                         </div>
-                    </div>
+                    <!-- </div> -->
                     <transition name="tr-cart">
-                        <div  class="cart-drop" v-if="show_cart_drop" :style="{top:dropTop,right:dropCartRight}">
+                        <div class="cart-drop" v-if="show_cart_drop" :style="{top:dropTop,right:dropCartRight}">
                             <div class="cart-drop-header">
                                 <div v-if="cart">
                                     <input type="checkbox" id="allselect" @click="toggle_check" v-model="check_all">
@@ -60,7 +61,7 @@
                                         <input type="checkbox" v-model="item._checked">
                                     </div>
                                     <div class="col-lg-2">
-                                        <img :src="item.$product.preview[0].url" alt="">
+                                        <img :src="item.$product.preview[2].url" alt="">
                                     </div>
                                     <div class="col-lg-8 info">
                                         <div class="name">{{item.$product.name}}</div>
@@ -161,8 +162,9 @@
         },
         methods:{
             onShowCart(){
-                this.show_cart_drop =!this.show_cart_drop;
+                this.show_cart_drop = true;
                 this.read();
+                this.check_all = false;
             },
             logout(){
                 session.logout();
@@ -282,15 +284,16 @@
 .cart-drop {
     width: 350px;
     right: 10%;
-    /* padding: 5px; */
     text-align: left;
+    border: 1px solid rgba(0, 0, 0, .0)
 }
 .cart-drop .empty{
     padding: 10px;
     text-align: center;
 }
+
 .cart-drop-header{
-    /* background: #F9726C; */
+    /* background: #F1EDEE; */
     min-height: 25px;
     padding: 8px;
     border-bottom: 1px solid rgba(0, 0, 0, .08);
@@ -300,7 +303,7 @@
 }
 .cart-drop .cart-list {
     padding: 7px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, .08);
+    /* border-bottom: 1px solid rgba(0, 0, 0, .08); */
     margin-bottom: 7px;
     /* background: #F1EDEE; */
 }
@@ -356,6 +359,12 @@
   transition: opacity .5s
 }
 .tr-user-enter, .tr-user-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
+.tr-cart-enter-active, .tr-cart-leave-active {
+  transition: opacity .5s
+}
+.tr-cart-enter, .tr-cart-leave-to /* .fade-leave-active in below version 2.1.8 */ {
   opacity: 0
 }
 </style>
