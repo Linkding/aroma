@@ -60,10 +60,10 @@
                             </form>
                             <div v-else class="wrap-row">
                                 <div class="col-lg-2">
-                                    <span class="key">密码</span>
+                                    <span class="key">修改密码</span>
                                 </div>
                                 <div class="col-lg-8">
-                                    <span class="value">{{current.password||'-'}}</span>
+                                    <!-- <span class="value">{{current.password||'-'}}</span> -->
                                 </div>
                                 <div class="col-lg-2">
                                     <button @click="show.password = true" class="btn">编辑</button>
@@ -87,6 +87,9 @@
         components:{Nav , SideNav},
         data(){
             return{
+                error:{
+                    invalid_password:false,
+                },
                 current:session.uinfo(),
                 show:{
                     username:false,
@@ -105,10 +108,29 @@
                     .then(r=>{
                         session.replace_uinfo(r.data);
                         this.show[property] = false;
+                        this.$nextTick(()=>{
+                            this.$username = r.data.username;
+                        })
                     })
             },
-            change_password(property){
-
+            change_password(){
+                let u = session.uinfo();
+                let unique = u.username || u.email || u.phone;
+                console.log('unique',unique);
+                
+                session.exist(unique,this.password.old)
+                    .then(r=>{
+                        r ? this.update_password() : this.error.invalid_password;
+                    })
+            },
+            update_password(){
+                return api('user/update',{
+                    id:this.current.id,
+                    password:this.password.new
+                }).then(r=>{
+                    alert('修改密码成功')
+                    session.logout('#/login')
+                })
             }
         }
     }

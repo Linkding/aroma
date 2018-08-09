@@ -6,6 +6,10 @@ import './css/global.css';
 import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
 import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
 
+//vuex
+import Vuex from 'vuex';
+Vue.use(Vuex);
+
 //使用vue swiper 轮播组件
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles
@@ -95,3 +99,11 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
+new Vue({
+  data(){
+    return {
+      $username:'',
+    }
+  }
+})

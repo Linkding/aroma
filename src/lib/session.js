@@ -1,3 +1,21 @@
+import api from '../lib/api';
+
+function exist(unique,password){
+    return api('user/read',{
+        where:{
+            or:[
+                ['username','=',unique],
+                ['email','=',unique],
+                ['phone','=',unique],
+            ],
+        }
+    }).then(r=>{
+        let row;
+        if((row = r.data[0])&&row.password === password)
+            return row;
+        return false;
+    })
+}
 function uinfo(){
     return JSON.parse(localStorage.getItem('uinfo'))||''
 }
@@ -27,4 +45,5 @@ export default {
     is_admin,
     is_login,
     replace_uinfo,
+    exist,
 }

@@ -19,6 +19,7 @@
                     <div class="input-control">
                         <input id="password" type="password" placeholder="密码"
                         v-model="current.password">
+                        <div style="padding:5px">测试密码：123123</div>
                     </div>
                     <div class="input-control"> 
                         <button type="submit">登录</button>

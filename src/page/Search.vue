@@ -131,7 +131,9 @@
                 class="box"
             >
                 <div class="pic">
-                    <img :src='pre.preview[0].url' alt="">
+                    <router-link :to="'/detail/'+pre.id">
+                        <img :src='pre.preview[0].url' alt="">
+                    </router-link>
                     <div class="info heart">
                         <span>
                             <i class="fa fa-heart" aria-hidden="true"></i>
