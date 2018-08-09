@@ -23,7 +23,7 @@
                                 </router-link>
                             </div>
                             <div>
-                                <router-link to="/me/setting">
+                                <router-link :to="to_setting">
                                     <i class="fa fa-cog" aria-hidden="true"></i>
                                     设置
                                 </router-link>
@@ -161,6 +161,11 @@
             this.read();
         },
         methods:{
+            to_setting(){
+                if(uinfo.user_id == 1)
+                   return '/admin/user';
+                return '/me/setting';
+            },
             onShowCart(){
                 this.show_cart_drop = true;
                 this.read();
