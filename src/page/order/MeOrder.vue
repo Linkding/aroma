@@ -50,7 +50,7 @@
                             <td>{{row.id||'-'}}</td>
                             <td>{{row.oid||'-'}}</td>
                             <td>{{row.sum||'-'}}</td>
-                            <td><span @click="show_detail(row.product_info)">查看</span></td>
+                            <td><span @click="show_detail(row.product_info)" class="check">查看</span></td>
                             <td>{{row.pay_by||'-'}}</td>
                             <td>{{row._paid?'是':'否'}}</td>
                             <td>{{row.memo||'-'}}</td>
@@ -69,16 +69,20 @@
                 
             </div>
         </div>
+        <div class="container">
+            <Footer/>
+        </div>
     </div>
 </template>
 <script>
     import session from '../../lib/session';
     import api  from '../../lib/api';
     import Nav from '../../components/Nav';
+    import Footer from '../../components/Footer';
     import SideNav from '../../components/SideNav';
 
     export default{
-        components:{Nav,SideNav},
+        components:{Nav,SideNav,Footer},
         data(){
             return{
                 show_detail_mask:false,
@@ -171,5 +175,8 @@
     height: 250px;
     background: #f8f8f6;
     padding: 20px;
+}
+.check {
+   cursor:pointer;
 }
 </style>

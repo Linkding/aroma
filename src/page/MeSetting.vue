@@ -74,17 +74,21 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <Footer/>
+        </div>
     </div>
 </template>
 <script>
     import Nav from '../components/Nav';
+    import Footer from '../components/Footer';
     import SideNav from '../components/SideNav';
     import '../css/sidenav.css';
     import session from '../lib/session';
     import api from '../lib/api';
 
     export default {
-        components:{Nav , SideNav},
+        components:{Nav , SideNav ,Footer},
         data(){
             return{
                 error:{

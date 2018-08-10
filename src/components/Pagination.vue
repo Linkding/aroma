@@ -3,11 +3,11 @@
         <span class="btn-group">
       <button class="btn-small"
               :disabled="is_first_page"
-              @click="change(1)">First
+              @click="change(1)">首
       </button>
       <button class="btn-small"
               :disabled="is_first_page"
-              @click="prev()">Prev
+              @click="prev()">前
       </button>
     </span>
 
@@ -29,12 +29,12 @@
     <span class="btn-group">
       <button class="btn-small"
               :disabled="is_last_page"
-              @click="next()">Next
+              @click="next()">下
       </button>
 
       <button class="btn-small"
               :disabled="is_last_page"
-              @click="change(last_page)">Last
+              @click="change(last_page)">末
       </button>
     </span>
     </div>
@@ -105,6 +105,6 @@ export default {
   padding: 10px 0;
 }
 .pagination .active {
-  background: #D9E1E5;
+  background: #F9726C;
 }
 </style>

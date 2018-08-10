@@ -40,16 +40,18 @@
                     <button class="btn" @click.prevent="submit">提交订单</button>
                 </div>
             </div>
+            <Footer/>
        </div>
     </div>
 </template>
 <script>
     import Nav from '../components/Nav';
+    import Footer from '../components/Footer';
     import api from '../lib/api';
     import {generate_oid} from '../lib/order';
     import session from '../lib/session';
     export default{
-        components:{Nav},
+        components:{Nav , Footer},
         data(){
             return{
                 current:{

@@ -1,8 +1,8 @@
 <template>
     <div :style="{marginBottom: this.pushDown ? '20px': 0,}" :class="['container' , 'nav' , is_poa?'poa':'']">
-        <div class="col-lg-4 logo">
+        <div class="col-lg-4 ">
             <router-link to="/">
-                <img src="../assets/img/logo02.png" alt="">
+                <img class="logo" src="../assets/img/logo-v2.png" alt="">
             </router-link>
         </div>
         <div class="col-lg-6 right">
@@ -16,6 +16,12 @@
                     </div>
                     <transition name="tr-user">
                         <div class="user-drop" v-if="show_user_drop" :style="{top:dropTop,right:dropUserRight}">
+                            <div v-if="uinfo.id == 1">
+                                <router-link to="/admin/user">
+                                    <i class="fa fa-tasks" aria-hidden="true"></i>
+                                    管理后台
+                                </router-link>
+                            </div>
                             <div>
                                 <router-link to="/order/meorder">
                                     <i class="fa fa-bars" aria-hidden="true"></i> 
@@ -23,7 +29,7 @@
                                 </router-link>
                             </div>
                             <div>
-                                <router-link :to="to_setting()">
+                                <router-link to="/me/setting">
                                     <i class="fa fa-cog" aria-hidden="true"></i>
                                     设置
                                 </router-link>
@@ -56,28 +62,30 @@
                                 </div>
                             </div>
                             <div class="cart-warp">
-                                <div  class="cart-list" v-for="(item,index) in cart" :key="index">
-                                    <div class="col-lg-1">
-                                        <input type="checkbox" v-model="item._checked">
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <img :src="item.$product.preview[2].url" alt="">
-                                    </div>
-                                    <div class="col-lg-8 info">
-                                        <div class="name">{{$username}}</div>
-                                        <div>
-                                            <div class="col-lg-6 count">X {{item.count}}</div>
-                                            <div class="col-lg-6">
-                                                <span class="currency">{{item.$product.price}}</span>
+                                <!-- <transition name="tr-cartlist"> -->
+                                    <div  class="cart-list" v-for="(item,index) in cart" :key="index">
+                                        <div class="col-lg-1">
+                                            <input type="checkbox" v-model="item._checked">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <img :src="item.$product.preview[2].url" alt="">
+                                        </div>
+                                        <div class="col-lg-8 info">
+                                            <div class="name">{{uinfo.username}}</div>
+                                            <div>
+                                                <div class="col-lg-6 count">x {{item.count}}</div>
+                                                <div class="col-lg-6">
+                                                    <span class="currency">{{item.$product.price}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <div class="remove" @click="remove(item.id)">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-1">
-                                        <div class="remove">
-                                            <i class="fa fa-times" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- </transition> -->
                             </div>
                             <div class="sub-bar" v-if="cart">
                                 <div class="col-lg-8">
@@ -161,13 +169,6 @@
             this.read();
         },
         methods:{
-            to_setting(){
-                if(this.uinfo.id == 1){
-                    return {path:'/admin/user'};
-                }else{
-                    return {path:'/me/setting'};
-                }
-            },
             onShowCart(){
                 this.show_cart_drop = true;
                 this.read();
@@ -194,11 +195,10 @@
                 }
             },
             remove(id){
-                if(confirm('确定移除此产品吗？'))
-                    api('cart/delete',{id})
-                        .then(r=>{
-                            this.read();
-                        })
+                api('cart/delete',{id})
+                    .then(r=>{
+                        this.read();
+                    })
             },
             to(){
                 let check = [];
@@ -208,7 +208,6 @@
                     if(val._checked)
                         check.push(val.id)
                 }
-                console.log('check',check);
                 return {path:'/order/confirm', query:{id:check,_referer:'cart_buy'}}
             }
         }
@@ -238,6 +237,7 @@
     border-radius: 5px;
     padding: 3px 0;
 }
+
 .nav >*{
     /* font-size: 0.8rem; */
     vertical-align: middle;
@@ -247,6 +247,8 @@
 }
 .nav .logo {
     padding-left: 30px;
+    width: 150px;
+    height: 55px;
 }
 .nav .item {
     text-align: center;
@@ -268,6 +270,7 @@
 .user-panel .username,
 .user-panel .cart{
     position: relative;
+    cursor:pointer
 }
 .user-drop,
 .cart-drop {
@@ -363,15 +366,21 @@
     text-align: left;
 }
 .tr-user-enter-active, .tr-user-leave-active {
-  transition: opacity .5s
+  transition: opacity .9s
 }
 .tr-user-enter, .tr-user-leave-to /* .fade-leave-active in below version 2.1.8 */ {
   opacity: 0
 }
 .tr-cart-enter-active, .tr-cart-leave-active {
-  transition: opacity .5s
+  transition: opacity .9s
 }
 .tr-cart-enter, .tr-cart-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
+.tr-cartlist-enter-active, .tr-cartlist-leave-active {
+  transition: opacity .9s
+}
+.tr-cartlist-enter, .tr-cartlist-leave-to /* .fade-leave-active in below version 2.1.8 */ {
   opacity: 0
 }
 </style>

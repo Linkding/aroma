@@ -154,16 +154,20 @@
             :limit="limit"
             :onChange="on_page_change"
         />
+        <div class="container">
+            <Footer/>
+        </div>
     </div>
 </template>
 <script>
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import Pagination from "../components/Pagination";
 import api from '../lib/api';
 import {clone} from '../lib/helper';
 
 export default {
-    components: { Nav , Pagination},
+    components: { Nav , Pagination,Footer},
     data(){
         return{
             cat_panel:'',
@@ -205,8 +209,6 @@ export default {
             },
             //set_condition为请求的api中的专有属性
             set_condition(type,value){ 
-                console.log('11',11);
-                
                 let query = clone(this.$route.query);
                 switch (type){
                     case 'page':
@@ -221,9 +223,9 @@ export default {
                 let condition = {};
                 condition[type] = value;
 
-                let o = this.search_param;
-                let n = Object.assign({},o,condition);
-                this.$router.replace({query:n});
+                // let o = this.search_param;
+                // let n = Object.assign({},o,condition);
+                this.$router.replace({query:condition});
             },
             set_query_year_range(min,max){
                 let query = this.parse_route_query();
@@ -282,7 +284,10 @@ export default {
                 if(typeof query.sort_by == 'string')
                     query.sort_by = query.sort_by.split(',')
                 return query;
-            }
+            },
+            // clean_query(){
+            //     this.$router.replace({});
+            // }
 
     },
     watch:{

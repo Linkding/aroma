@@ -1,28 +1,32 @@
 <template>
     <div>
         <Nav/>
-           <div class="container pay_by" >
-                <div v-if="current.pay_by=='wechat'" class="w-pay">
-                    <p>请扫描支付</p>
-                    <img :src="qrcode" alt="">
-                </div>
-                <div v-else>
-                    跳转中，别着急...
-                    <!-- <a :href="qrcode">点击前往支付宝支付</a> -->
-                </div>
-                <div>
-                    <button @click="verify">支付完成</button>
-                </div>
-         </div>
+        <div class="container pay_by" >
+            <div v-if="current.pay_by=='wechat'" class="w-pay">
+                <p>请扫描支付(将支付0.02元，支持demo)</p>
+                <img :src="qrcode" alt="">
+            </div>
+            <div v-else>
+                跳转中，别着急...
+                <!-- <a :href="qrcode">点击前往支付宝支付</a> -->
+            </div>
+            <div>
+                <button @click="verify">支付完成</button>
+            </div>
+        </div>
+        <div class="container">
+            <Footer/>
+        </div>
     </div>
 </template>
 <script>
     import Nav from '../components/Nav';
+    import Footer from '../components/Footer';
     import api from '../lib/api';
     import {url} from '../lib/url';
 
     export default {
-        components:{Nav},
+        components:{Nav ,Footer},
         data(){
             return{
                 current:{},
@@ -53,11 +57,11 @@
                     })
             },
             go_me_order(){
-                this.$router.push('/me/order')
+                this.$router.push('/order/meorder')
             },
             pay(id,pay_by,fee){
                 if(fee > .2)
-                    fee = .2;
+                    fee = .02;
                 return api('order/payment/url',{
                     id:id,
                     pay_by:pay_by,

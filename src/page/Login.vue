@@ -27,19 +27,22 @@
                 </form>
             </div>
         </div>
-        <div class="footer"></div>
+        <div class="container">
+          <Footer/>
+        </div>
     </div>
 </template>
 
 <script>
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import validator from "../directive/validator";
 import api from "../lib/api";
 import session from "../lib/session";
 
 export default {
   directives: { validator },
-  components: { Nav },
+  components: { Nav,Footer },
   data() {
     return {
       current: {

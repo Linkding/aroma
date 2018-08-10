@@ -114,15 +114,19 @@
                 </div>
             </div>
        </div>
+       <div class="container">
+           <Footer/>
+       </div>
     </div>
 </template>
 <script>
     import Nav from '../../components/Nav';
+    import Footer from '../../components/Footer';
     import api from '../../lib/api';
     import {generate_oid} from '../../lib/order';
     import session from '../../lib/session';
     export default{
-        components:{Nav},
+        components:{Nav , Footer},
         data(){
             return{
                 product:{},
