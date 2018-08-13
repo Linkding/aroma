@@ -9,16 +9,16 @@
                 <div class="col-lg-6 main">
                     <h1 class="title">{{detail.name}}</h1>
                     <div class="info-item">
-                        <span class="key">产地：{{detail.$location? detail.$location.name : '-'}}</span>
-                        <span class="val">{{detail.location}}</span>
+                        <span class="key">产地：</span>
+                        <span class="val">{{detail.$location? detail.$location.name : '-'}}</span>
                     </div>
                     <div class="info-item">
                         <span class="key">年份：</span>
                         <span class="val">{{detail.year}}</span>
                     </div>
                     <div class="info-item">
-                        <span class="key">酿造：</span>
-                        <span class="val">橡木桶</span>
+                        <span class="key">品种：</span>
+                        <span class="val">{{detail.$breed&&detail.$breed.name||'-'}}</span>
                     </div>
                     <div class="info-item">
                         <span class="key">价格：</span>
@@ -55,6 +55,7 @@
                 detail:{},
                 with:[
                     {model:'location',relation:'has_one'},
+                    {model:'breed',relation:'has_one'},
                 ],
                 count:1,
                 uinfo:session.uinfo(),
@@ -141,7 +142,7 @@
 <style scoped>
 .product {
     padding: 20px 0;
-    background: rgba(0, 0, 0, .08);
+    background: rgba(0, 0, 0, .03);
 }
 .main{
     padding-left: 10%;
@@ -150,6 +151,15 @@
 .main .info-item{
     padding: 10px 0;
     vertical-align: middle;
+}
+.info-item button {
+    margin: 0 5px;
+    border-radius: 4px;
+}
+.info-item button:hover {
+    background: #F9726C;
+    color: #fff;
+    cursor: pointer;
 }
 .product .pic {
     padding-left: 10%;

@@ -1,5 +1,31 @@
 <template>
     <div>
+        <div class="mask" v-if="show_detail_mask">
+            <div class="wrap-detail">
+                <div class="close right" @click="show_detail_mask = false">
+                </div>
+                <div>
+                    <table>
+                        <thead>
+                            <th>序号</th>
+                            <th>商品名称</th>
+                            <th>单价</th>
+                            <th>数量</th>
+                            <th>小计</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item,index) in product_info" :key="index">
+                                <td>{{item.$product?item.$product.id:item.id}}</td>
+                                <td>{{item.$product?item.$product.name:item.name}}</td>
+                                <td>{{item.$product?item.$product.price:item.price}}</td>
+                                <td>{{item.count||'-'}}</td>
+                                <td>{{item.$product?item.$product.price:item.price * item.count }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         <Nav :pushDown="true"/>
         <div>
             <div class="container">
@@ -59,6 +85,7 @@
                                     <th>订单信息</th>
                                     <th>支付方式</th>
                                     <th>支付状态</th>
+                                    <th>发货状态</th>
                                     <th>备注</th>
                                     <th>用户</th>
                                     <th>操作</th>
@@ -68,9 +95,10 @@
                                     <td>{{row.id||'-'}}</td>
                                     <td>{{row.oid||'-'}}</td>
                                     <td>{{row.sum||'-'}}</td>
-                                    <td>{{row.product_info||'-'}}</td>
+                                    <td class="check" @click="show_detail(row.product_info)">查看</td>
                                     <td>{{row.pay_by||'-'}}</td>
                                     <td>{{row._paid?'已完成':'未完成'}}</td>
+                                    <td>{{row.wait_delivery?'已完成':'未完成'}}</td>
                                     <td>{{row.memo||'-'}}</td>
                                     <td>{{row.$user?row.$user.username:'-'}}</td>
                                     <td>
@@ -102,6 +130,7 @@ export default {
             {model:'user',relation:'has_one'},
         ],
         user:{},
+        show_detail_mask:false,
     };
   },
   mounted() {
@@ -110,6 +139,10 @@ export default {
   methods:{
        set_user_id(row){
          this.$set(this.current,'user_id',row.id);
+        },
+       show_detail(row){
+            this.product_info = [row];
+            this.show_detail_mask = true;
         },
   },
   mixins:[AdminPage],
@@ -127,5 +160,23 @@ button:hover {
 }
 .input-control button {
   margin: 0px 10px;
+}
+.mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .1);
+}
+.wrap-detail {
+    position: absolute;
+    top: 15%;
+    left: 22%;
+    width: 700px;
+    height: 250px;
+    background: #f8f8f6;
+    padding: 20px;
+}
+.check{
+    cursor:pointer;
 }
 </style>

@@ -20,7 +20,7 @@
                 <div class="cat-list">
                     <div class="cat-title">
                         明星单品
-                        <span class="des">@ GLOBAL BUYER</span>
+                        <span class="des"> GLOBAL BUYER</span>
                     </div>
                     <div class="row card-group">
                          <div class="card" v-for="(card,index) in start_hot" :key="index">
