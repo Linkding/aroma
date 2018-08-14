@@ -124,7 +124,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-group">
+        <div class="card-group" v-if="list">
             <div
                 v-for="(pre,index) in list"
                 :key="index"
@@ -148,6 +148,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-else class="empty-area">
+            <div class="empty-search"></div>
+            <div class="em-desc">暂无内容</div>
         </div>
         <Pagination 
             :totalCount="total"
@@ -402,5 +406,22 @@ export default {
 }
 .box .pic:hover img{
     opacity: 1;
+}
+.empty-area {
+    width: 100%;
+    height: 480px;
+    text-align: center;
+    padding-top: 200px;
+}
+.empty-search{
+    background-image: url(../assets/empty-search.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 80px;
+}
+.em-desc {
+    padding: 15px;
+    color: #ccc;
 }
 </style>
