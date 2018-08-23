@@ -16,7 +16,7 @@
                     </div>
                     <transition name="tr-user">
                         <div class="user-drop" v-if="show_user_drop" :style="{top:dropTop,right:dropUserRight}">
-                            <div v-if="uinfo.id == 1">
+                            <div v-if="uinfo.username == 'linkding'">
                                 <router-link to="/admin/user">
                                     <i class="fa fa-tasks" aria-hidden="true"></i>
                                     管理后台
