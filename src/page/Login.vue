@@ -69,10 +69,15 @@ export default {
       api("user/read", {
         where: { or: query }
       }).then(r => {
+        if(r.data == null){
+          this.login_failed = true;
+          return;
+        }
+
         //检查返回结果，如果data长度为0，说明没有找到该用户
         let row = r.data[0];
-
-        if (!row || this.current.password !== row.password) {
+        
+        if ( this.current.password !== row.password) {
           this.login_failed = true;
           return;
         }
