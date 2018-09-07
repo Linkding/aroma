@@ -71,7 +71,7 @@
                                             <img :src="item.$product.preview[2].url" alt="">
                                         </div>
                                         <div class="col-lg-8 info">
-                                            <div class="name">{{uinfo.username}}</div>
+                                            <div class="name">{{item.$product.name}}</div>
                                             <div>
                                                 <div class="col-lg-6 count">x {{item.count}}</div>
                                                 <div class="col-lg-6">
