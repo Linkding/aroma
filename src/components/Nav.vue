@@ -171,7 +171,6 @@
         methods:{
             onShowCart(){
                 this.show_cart_drop = true;
-                this.read();
                 this.check_all = false;
             },
             logout(){

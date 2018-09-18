@@ -28,13 +28,20 @@
     //         nullable:true,
     //     },
     // });
-    api('PROPERTY/CREATE',{
-        model:'product',
-        key:'occasion_hot',
-        structure:{
-            type:'boolean',
-            nullable:true,
-        },
+    // api('PROPERTY/CREATE',{
+    //     model:'product',
+    //     key:'occasion_hot',
+    //     structure:{
+    //         type:'boolean',
+    //         nullable:true,
+    //     },
+    // });
+    api('MODEL/ATTACH_FEATURE', {
+        key     : 'order', // 模型名称
+        feature : 'payment', // 特性类型
     });
-
+    // api('MODEL/DETACH_FEATURE', {
+    //     key     : 'order',
+    //     feature : 'payment',
+    // });
     </script>

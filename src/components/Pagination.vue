@@ -53,8 +53,8 @@ export default {
         console.log(1);
       }
     },
-    currentPage:{
-      default:1,
+    currentPage: {
+      default: 1
     }
   },
   data() {
@@ -92,10 +92,10 @@ export default {
       return Math.ceil(this.totalCount / this.limit);
     }
   },
-  watch:{
-    currentPage(n){
+  watch: {
+    currentPage(n) {
       this.current_page = n;
-    },
+    }
   }
 };
 </script>
@@ -105,6 +105,6 @@ export default {
   padding: 10px 0;
 }
 .pagination .active {
-  background: #F9726C;
+  background: #f9726c;
 }
 </style>
